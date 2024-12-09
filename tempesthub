@@ -1,0 +1,4 @@
+while true do
+    game:GetService("ReplicatedStorage"):WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("vote_wave_skip"):InvokeServer()
+    wait()
+end
