@@ -1,6 +1,13 @@
 repeat task.wait() until game:IsLoaded()
-wait(1)
+task.wait(1)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local voteWaveSkip = ReplicatedStorage:WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("vote_wave_skip")
 while true do
-    game:GetService("ReplicatedStorage"):WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("vote_wave_skip"):InvokeServer()
-    wait()
+    local success, err = pcall(function()
+        voteWaveSkip:InvokeServer()
+    end)
+    if not success then
+        warn("Failed to invoke vote_wave_skip:", err)
+    end
+    task.wait(.1)
 end
